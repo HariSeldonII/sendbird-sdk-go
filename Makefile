@@ -1,3 +1,4 @@
+PROGRAM  = dors
 MODULE   = $(shell env GO111MODULE=on $(GO) list -m)
 DATE    ?= $(shell date +%FT%T%z)
 VERSION ?= $(shell git describe --tags --always --dirty --match=v* 2> /dev/null || \
@@ -21,7 +22,7 @@ all: fmt lint | $(BIN) ; $(info $(M) building executable…) @ ## Build program 
 	$Q $(GO) build \
 		-tags release \
 		-ldflags '-X $(MODULE)/cmd.Version=$(VERSION) -X $(MODULE)/cmd.BuildDate=$(DATE)' \
-		-o $(BIN)/$(basename $(MODULE)) main.go
+		-o $(BIN)/$(PROGRAM) main.go
 
 # Tools
 
@@ -94,6 +95,19 @@ lint: | $(GOLINT) ; $(info $(M) running golint…) @ ## Run golint
 .PHONY: fmt
 fmt: ; $(info $(M) running gofmt…) @ ## Run gofmt on all source files
 	$Q $(GO) fmt $(PKGS)
+
+# Docker
+
+DOCKER_TAG := $(shell echo docker.pkg.$(MODULE):$(VERSION) | tr '[:upper:]' '[:lower:]')
+
+.PHONY: docker
+docker: ; $(info $(M) Building docker image…) @ ## Build docker image.
+	docker build . --file Dockerfile --tag $(DOCKER_TAG)
+
+.PHONY: docker-push
+docker-push: ; $(info $(M) Pushing docker image…) @ ## Push docker image.
+	@cat $(GITHUB_TOKEN) | docker login docker.pkg.github.com -u HariSeldonII --password-stdin
+	docker push $(DOCKER_TAG)
 
 # Misc
 

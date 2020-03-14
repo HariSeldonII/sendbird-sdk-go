@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"dors/cmd"
+	"github.com/HariSeldonII/dors/cmd"
 )
 
 func main() {

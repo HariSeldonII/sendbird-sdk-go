@@ -1,4 +1,4 @@
-module dors
+module github.com/HariSeldonII/dors
 
 go 1.14
 

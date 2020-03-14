@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"dors/hello"
+	"github.com/HariSeldonII/dors/hello"
 )
 
 func init() {
