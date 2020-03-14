@@ -98,7 +98,7 @@ fmt: ; $(info $(M) running gofmt…) @ ## Run gofmt on all source files
 
 # Docker
 
-DOCKER_TAG := $(shell echo docker.pkg.$(MODULE):$(VERSION) | tr '[:upper:]' '[:lower:]')
+DOCKER_TAG := $(shell echo docker.pkg.$(MODULE)/$(PROGRAM):$(VERSION) | tr '[:upper:]' '[:lower:]')
 
 .PHONY: docker
 docker: ; $(info $(M) Building docker image…) @ ## Build docker image.
