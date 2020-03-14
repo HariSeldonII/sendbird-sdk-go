@@ -1,22 +1,11 @@
-# dors
+# sendbird-sdk-go
 
-Dors is a Reddit Chat Bot written in Golang.
+Go SDK for [Sendbird](https://sendbird.com/).
 
 ## Action Badges
 
-![Docker](https://github.com/HariSeldonII/dors/workflows/Docker/badge.svg)
 ![Go](https://github.com/HariSeldonII/dors/workflows/Go/badge.svg)
 ![Release](https://github.com/HariSeldonII/dors/workflows/Release/badge.svg)
-
-## Frequently Asked Questions (FAQ)
-
-### What's with the name?
-
-> **Dors** Vanabili is a robot who initially is assigned by Chetter Hummin to
-> protect Hari Seldon while Seldon attempts to develop his theory of
-> psychohistory.
-
-[source](https://asimov.fandom.com/wiki/Dors_Venabili)
 
 ## Development
 
@@ -25,14 +14,6 @@ Dors is a Reddit Chat Bot written in Golang.
 Go 1.11 or greater is required.
 
 To update a dependency, use `go get DEPENDENCY@REVISION`.
-
-### Building the Docker Image
-
-You can build the Docker image locally by running:
-
-```bash
-make docker
-```
 
 ### Makefile Usage
 

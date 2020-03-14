@@ -18,11 +18,7 @@ M = $(shell printf "\033[34;1m▶\033[0m")
 export GO111MODULE=on
 
 .PHONY: all
-all: fmt lint test test-race test-xml test-coverage | $(BIN) ; $(info $(M) building executable…) @ ## Build program binary
-	$Q $(GO) build \
-		-tags release \
-		-ldflags '-X $(MODULE)/cmd.Version=$(VERSION) -X $(MODULE)/cmd.BuildDate=$(DATE)' \
-		-o $(BIN)/$(PROGRAM) main.go
+all: fmt lint test test-race test-xml test-coverage $(BIN) ; $(info $(M) Running all targets) @ ## Run all targets
 
 # Tools
 
@@ -95,19 +91,6 @@ lint: | $(GOLINT) ; $(info $(M) running golint…) @ ## Run golint
 .PHONY: fmt
 fmt: ; $(info $(M) running gofmt…) @ ## Run gofmt on all source files
 	$Q $(GO) fmt $(PKGS)
-
-# Docker
-
-DOCKER_TAG := $(shell echo docker.pkg.$(MODULE)/$(PROGRAM):$(VERSION) | tr '[:upper:]' '[:lower:]')
-
-.PHONY: docker
-docker: ; $(info $(M) Building docker image…) @ ## Build docker image.
-	docker build . --file Dockerfile --tag $(DOCKER_TAG)
-
-.PHONY: docker-push
-docker-push: ; $(info $(M) Pushing docker image…) @ ## Push docker image.
-	@docker login docker.pkg.github.com -u HariSeldonII -p $(GITHUB_TOKEN)
-	docker push $(DOCKER_TAG)
 
 # Misc
 
