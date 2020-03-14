@@ -25,9 +25,13 @@ Go 1.11 or greater is required.
 
 To update a dependency, use `go get DEPENDENCY@REVISION`.
 
-### Versioning
+### Building the Docker Image
 
-Version is extracted from git tags using anything prefixed by `v`.
+You can build the Docker image locally by running:
+
+```bash
+make docker
+```
 
 ### Makefile Usage
 
@@ -57,6 +61,10 @@ already-installed one by specifying their full path this way instead:
     make lint GOLINT=/usr/bin/golint
 
 Files other than `.gitignore` and `Makefile` are just examples.
+
+### Versioning
+
+Version is extracted from git tags using anything prefixed by `v`.
 
 ## Licenses
 
