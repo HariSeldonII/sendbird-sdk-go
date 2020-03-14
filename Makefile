@@ -106,7 +106,7 @@ docker: ; $(info $(M) Building docker image…) @ ## Build docker image.
 
 .PHONY: docker-push
 docker-push: ; $(info $(M) Pushing docker image…) @ ## Push docker image.
-	@cat $(GITHUB_TOKEN) | docker login docker.pkg.github.com -u HariSeldonII --password-stdin
+	@docker login docker.pkg.github.com -u HariSeldonII -p $(GITHUB_TOKEN)
 	docker push $(DOCKER_TAG)
 
 # Misc
