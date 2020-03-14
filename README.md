@@ -4,6 +4,7 @@ Dors is a Reddit Chat Bot written in Golang.
 
 ## Action Badges
 
+![Docker](https://github.com/HariSeldonII/dors/workflows/Docker/badge.svg)
 ![Go](https://github.com/HariSeldonII/dors/workflows/Go/badge.svg)
 ![Release](https://github.com/HariSeldonII/dors/workflows/Release/badge.svg)
 
